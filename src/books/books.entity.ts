@@ -18,6 +18,9 @@ export class Book extends BaseEntity {
   @Column()
   title: string;
 
+  @Column({ type: 'int', nullable: true })
+  year: number;
+
   @Column()
   workId: string;
 

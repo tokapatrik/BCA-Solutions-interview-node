@@ -4,7 +4,7 @@ import { BooksService } from './books.service';
 
 @Controller('books')
 export class BooksController {
-  constructor(private readonly booksService: BooksService) {}
+  constructor(private readonly booksService: BooksService) { }
 
   @Get()
   findAll(): Promise<Book[]> {
@@ -14,5 +14,15 @@ export class BooksController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.booksService.findOne(+id);
+  }
+
+  @Patch('update-all-with-year')
+  updateAllWithYear() {
+    return this.booksService.updateAllWithYear();
+  }
+
+  @Get('query/:country')
+  query(@Param('country') country: string, @Query('from') fromYear: number) {
+    return this.booksService.queryAll(country, fromYear);
   }
 }
